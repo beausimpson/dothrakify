@@ -9,8 +9,32 @@ let losses = 0;
 let guess = 0;
 let count = 0;
 
+// temporary variable to test songpull function -- will need to be removed
+var song ="hey ya"
+
 function songPull(song) {
     //api for songPull here
+    var corsBypass = "https://cors-escape.herokuapp.com/"
+    var queryURL = `${corsBypass}http://api.musixmatch.com/ws/1.1/track.search?q_track=${song}&apikey=19235e8ed115f81044447a46c258f431`;
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        // console.log(queryURL);
+        var JSONresponse = JSON.parse(response);
+        console.log(JSONresponse.message.body.track_list[0].track.track_id);
+        var trackId = JSONresponse.message.body.track_list[0].track.track_id;
+
+        $.ajax({
+            url: `${corsBypass}http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${trackId}&apikey=19235e8ed115f81044447a46c258f431`,
+            method: "GET"
+        }).then(function (secondResponse) {
+            var trackIdResponse = JSON.parse(secondResponse);
+            var lyrics = trackIdResponse.message.body.lyrics.lyrics_body
+            // console.log(lyrics)
+        })
+    })
     return lyrics
 }
 
