@@ -32,7 +32,7 @@ function songPull(song) {
         }).then(function (secondResponse) {
             var trackIdResponse = JSON.parse(secondResponse);
             var lyrics = trackIdResponse.message.body.lyrics.lyrics_body
-            // console.log(lyrics)
+            console.log(lyrics)
         })
     })
     return lyrics
@@ -73,28 +73,60 @@ window.onload = function () {
 }
 
 $(".guess1").on("click", function (event) {
-    console.log("guess made");
-    // change color of guess as a "highlight"
+    console.log("guess made1");
+    document.getElementById("changeling1").style.color = "black";
+    document.getElementById("changeling1").style.backgroundColor = "pink";
+    document.getElementById("changeling2").style.color = "black";
+    document.getElementById("changeling2").style.backgroundColor = "white";
+    document.getElementById("changeling3").style.color = "black";
+    document.getElementById("changeling3").style.backgroundColor = "white";
+    document.getElementById("changeling4").style.color = "black";
+    document.getElementById("changeling4").style.backgroundColor = "white";
+    //changeColor();
     guess = 1;
 
 })
 
 $(".guess2").on("click", function (event) {
-    console.log("guess made");
+    console.log("guess made2");
+    document.getElementById("changeling1").style.color = "black";
+    document.getElementById("changeling1").style.backgroundColor = "white";
+    document.getElementById("changeling2").style.color = "black";
+    document.getElementById("changeling2").style.backgroundColor = "pink";
+    document.getElementById("changeling3").style.color = "black";
+    document.getElementById("changeling3").style.backgroundColor = "white";
+    document.getElementById("changeling4").style.color = "black";
+    document.getElementById("changeling4").style.backgroundColor = "white";
     guess = 2;
-    // change color of guess as a "highlight"
+    //changeColor(); // change color of guess as a "highlight"
 })
 
 $(".guess3").on("click", function (event) {
-    console.log("guess made");
+    console.log("guess made3");
+    document.getElementById("changeling1").style.color = "black";
+    document.getElementById("changeling1").style.backgroundColor = "white";
+    document.getElementById("changeling2").style.color = "black";
+    document.getElementById("changeling2").style.backgroundColor = "white";
+    document.getElementById("changeling3").style.color = "black";
+    document.getElementById("changeling3").style.backgroundColor = "pink";
+    document.getElementById("changeling4").style.color = "black";
+    document.getElementById("changeling4").style.backgroundColor = "white";
     guess = 3;
-    // change color of guess as a "highlight"
+    //changeColor(); // change color of guess as a "highlight"
 })
 
 $(".guess4").on("click", function (event) {
-    console.log("guess made");
+    console.log("guess made4");
+    document.getElementById("changeling1").style.color = "black";
+    document.getElementById("changeling1").style.backgroundColor = "white";
+    document.getElementById("changeling2").style.color = "black";
+    document.getElementById("changeling2").style.backgroundColor = "white";
+    document.getElementById("changeling3").style.color = "black";
+    document.getElementById("changeling3").style.backgroundColor = "white";
+    document.getElementById("changeling4").style.color = "black";
+    document.getElementById("changeling4").style.backgroundColor = "pink";
     guess = 4;
-    // change color of guess as a "highlight"
+    //changeColor(); // change color of guess as a "highlight"
 })
 
 $(".submit").on("click", function (event) { //nested on.click 's. Not sure if will work. 
