@@ -8,9 +8,10 @@ let wins = 0;
 let losses = 0;
 let guess = 0;
 let count = 0;
+let translation;
 
 // temporary variable to test songpull function -- will need to be removed
-var song = "hey ya"
+let song = songs[2];
 
 function songPull(song) {
     //api for songPull here
@@ -18,6 +19,7 @@ function songPull(song) {
     var corsBypass = "https://cors-escape.herokuapp.com/"
     // URL for to get music lyrics from selected song
     var queryURL = `${corsBypass}http://api.musixmatch.com/ws/1.1/track.search?q_track=${song}&apikey=19235e8ed115f81044447a46c258f431`;
+    var songwords;
 
     // ajax call to get song lyrics
     $.ajax({
@@ -28,7 +30,7 @@ function songPull(song) {
         // console.log(queryURL);
         // response returns as a string -- json.parse changes into an object
         var JSONresponse = JSON.parse(response);
-        console.log(JSONresponse.message.body.track_list[0].track.track_id);
+        //console.log(JSONresponse.message.body.track_list[0].track.track_id);
         // trackid number that will be passed into second ajax call
         var trackId = JSONresponse.message.body.track_list[0].track.track_id;
 
@@ -40,11 +42,11 @@ function songPull(song) {
             // response returns as a string -- json.parse changes into an object
             var trackIdResponse = JSON.parse(secondResponse);
             // response returns lyrics to pe passed into translation function
-            var lyrics = trackIdResponse.message.body.lyrics.lyrics_body
-            // console.log(lyrics)
+            songwords = trackIdResponse.message.body.lyrics.lyrics_body
+            //console.log(lyrics)
         })
     })
-    return lyrics
+    return songwords
 }
 
 // temporary variable for language
@@ -52,7 +54,7 @@ var language = "dothraki"
 
 // language parameter should only be needed if we want add feature of changing languages
 function songTranslate(lyrics, language) {
-    let translation
+    let translation;
     //api for translating song here
     $.ajax({
         url: `https://api.funtranslations.com/translate/${language}.json?text=${lyrics}&api_key=JU188G9Hg1LzLKqX6gSA6QeF`,
@@ -60,11 +62,11 @@ function songTranslate(lyrics, language) {
     }).then(function (lyricResponse) {
         // console.log(lyricResponse)
         // response returns translated lyrics
-        console.log(lyricResponse.contents.translated)
+        //console.log(lyricResponse.contents.translated)
         // varaible to hold translated lyrics string
         translation = lyricResponse.contents.translated
     })
-    return translation
+    return translation;
 
 }
 
@@ -89,7 +91,9 @@ function displayWinLoss(number) {
 
 window.onload = function () {
     lyrics = songPull(songs[0]);
+    console.log(lyrics);
     translation = songTranslate(lyrics, languages[0]);
+    console.log(translation);
     displayGuesses();
     displayLyrics(translation);
     displayWinLoss(number);
@@ -97,28 +101,60 @@ window.onload = function () {
 }
 
 $(".guess1").on("click", function (event) {
-    console.log("guess made");
-    // change color of guess as a "highlight"
+    console.log("guess made1");
+    document.getElementById("changeling1").style.color = "black";
+    document.getElementById("changeling1").style.backgroundColor = "pink";
+    document.getElementById("changeling2").style.color = "black";
+    document.getElementById("changeling2").style.backgroundColor = "white";
+    document.getElementById("changeling3").style.color = "black";
+    document.getElementById("changeling3").style.backgroundColor = "white";
+    document.getElementById("changeling4").style.color = "black";
+    document.getElementById("changeling4").style.backgroundColor = "white";
+    //changeColor();
     guess = 1;
 
 })
 
 $(".guess2").on("click", function (event) {
-    console.log("guess made");
+    console.log("guess made2");
+    document.getElementById("changeling1").style.color = "black";
+    document.getElementById("changeling1").style.backgroundColor = "white";
+    document.getElementById("changeling2").style.color = "black";
+    document.getElementById("changeling2").style.backgroundColor = "pink";
+    document.getElementById("changeling3").style.color = "black";
+    document.getElementById("changeling3").style.backgroundColor = "white";
+    document.getElementById("changeling4").style.color = "black";
+    document.getElementById("changeling4").style.backgroundColor = "white";
     guess = 2;
-    // change color of guess as a "highlight"
+    //changeColor(); // change color of guess as a "highlight"
 })
 
 $(".guess3").on("click", function (event) {
-    console.log("guess made");
+    console.log("guess made3");
+    document.getElementById("changeling1").style.color = "black";
+    document.getElementById("changeling1").style.backgroundColor = "white";
+    document.getElementById("changeling2").style.color = "black";
+    document.getElementById("changeling2").style.backgroundColor = "white";
+    document.getElementById("changeling3").style.color = "black";
+    document.getElementById("changeling3").style.backgroundColor = "pink";
+    document.getElementById("changeling4").style.color = "black";
+    document.getElementById("changeling4").style.backgroundColor = "white";
     guess = 3;
-    // change color of guess as a "highlight"
+    //changeColor(); // change color of guess as a "highlight"
 })
 
 $(".guess4").on("click", function (event) {
-    console.log("guess made");
+    console.log("guess made4");
+    document.getElementById("changeling1").style.color = "black";
+    document.getElementById("changeling1").style.backgroundColor = "white";
+    document.getElementById("changeling2").style.color = "black";
+    document.getElementById("changeling2").style.backgroundColor = "white";
+    document.getElementById("changeling3").style.color = "black";
+    document.getElementById("changeling3").style.backgroundColor = "white";
+    document.getElementById("changeling4").style.color = "black";
+    document.getElementById("changeling4").style.backgroundColor = "pink";
     guess = 4;
-    // change color of guess as a "highlight"
+    //changeColor(); // change color of guess as a "highlight"
 })
 
 $(".submit").on("click", function (event) { //nested on.click 's. Not sure if will work. 
