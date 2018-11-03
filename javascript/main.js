@@ -68,10 +68,9 @@ function songTranslate(lyrics, language) {
 
 }
 
-// will need to limit the number of characters displayed from translated string to remove "not for commercial use" at the end of string
-// possibly substring method
+// ussed substing method to get all of the lyrics up the first * which indicates non commercial use only
 function displayLyrics(translation) {
-    $(".translLyrics").text(translation);
+    $(".translLyrics").text(translation.substring(0, translation.indexOf("*")))
 
 }
 
