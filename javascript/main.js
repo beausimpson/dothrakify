@@ -13,13 +13,12 @@ let translation;
 // temporary variable to test songpull function -- will need to be removed
 let song = songs[2];
 
-function songPull(song) {
+function songPull(song, language) {
     //api for songPull here
     // variable to hold url to bypass CORS restrictions
     var corsBypass = "https://cors-escape.herokuapp.com/"
     // URL for to get music lyrics from selected song
     var queryURL = `${corsBypass}http://api.musixmatch.com/ws/1.1/track.search?q_track=${song}&apikey=19235e8ed115f81044447a46c258f431`;
-    var songwords;
 
     // ajax call to get song lyrics
     $.ajax({
@@ -42,11 +41,20 @@ function songPull(song) {
             // response returns as a string -- json.parse changes into an object
             var trackIdResponse = JSON.parse(secondResponse);
             // response returns lyrics to pe passed into translation function
-            songwords = trackIdResponse.message.body.lyrics.lyrics_body
-            //console.log(lyrics)
+            var lyrics = trackIdResponse.message.body.lyrics.lyrics_body;
+
+            $.ajax({
+                url: `https://api.funtranslations.com/translate/${language}.json?text=${lyrics}&api_key=JU188G9Hg1LzLKqX6gSA6QeF`,
+                method: "Get"
+            }).then(function (lyricResponse) {
+                // console.log(lyricResponse)
+                console.log(lyricResponse.contents.translated)
+                translatedLyrics = lyricResponse.contents.translated
+                $("#lyrics").html(`<p>${translatedLyrics.substring(0, translatedLyrics.indexOf("*"))}</p>`);
+            })
         })
     })
-    return songwords
+
 }
 
 // temporary variable for language
