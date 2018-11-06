@@ -18,7 +18,7 @@ function songPull(song, language) {
     // variable to hold url to bypass CORS restrictions
     var corsBypass = "https://cors-escape.herokuapp.com/"
     // URL for to get music lyrics from selected song
-    var queryURL = `${corsBypass}http://api.musixmatch.com/ws/1.1/track.search?q_track=${song}&apikey=19235e8ed115f81044447a46c258f431`;
+    var queryURL = `${corsBypass}https://api.musixmatch.com/ws/1.1/track.search?q_track=${song}&apikey=19235e8ed115f81044447a46c258f431`;
 
     // ajax call to get song lyrics
     $.ajax({
