@@ -12,15 +12,13 @@ let count = 0;
 let song = songs[2];
 var language = languages[0];
 
-// temporary variable to test songpull function -- will need to be removed
-
-
 function songPull(song, language) {
     //api for songPull here
     // variable to hold url to bypass CORS restrictions
     var corsBypass = "https://cors-escape.herokuapp.com/"
     // URL for to get music lyrics from selected song
     var queryURL = `${corsBypass}https://api.musixmatch.com/ws/1.1/track.search?q_track=${song}&apikey=19235e8ed115f81044447a46c258f431`;
+    console.log(song);
 
     // ajax call to get song lyrics
     $.ajax({
@@ -52,6 +50,8 @@ function songPull(song, language) {
                 // console.log(lyricResponse)
                 console.log(lyricResponse.contents.translated)
                 translatedLyrics = lyricResponse.contents.translated
+                
+                // used substing method to get all of the lyrics up the first * which indicates non commercial use only
                 $("#translLyrics").html(`<p>${translatedLyrics.substring(0, translatedLyrics.indexOf("*"))}</p>`);
             })
         })
@@ -88,12 +88,12 @@ function songPull(song, language) {
 
 function displayGuesses() {
     for (var i = 0; i < 4; i++) {
-        $(".guess" + [i]).text(guesses[i]);
+        $(".guess" + [i + 1]).text(guesses[i]);
     }
 }
 
 function displayWinLoss(number) {
-    $(".questionNum").text(number);
+    $(".questionNum").text(`Question ${number}`);
     $(".user").text(user);
     $(".corrAnswers").text("WINS: " + wins);
     $(".wrongAnswers").text("LOSSES: " + losses);
@@ -169,7 +169,7 @@ $(".guess4").on("click", function (event) {
 
 $(".submit").on("click", function (event) { //nested on.click 's. Not sure if will work. 
     console.log("submit made");
-    if (number === guess) {
+    if (number === guess - 1) {
         wins = wins + 1;
         count = count + 1;
         number = number + 1;
