@@ -18,11 +18,21 @@ body {
     background: #ffffff;
 }
 
+/* jumbotron */
+.jumbotron {
+    text-align: center;
+}
+
+/* logo */
+#dothrakify-logo {
+    width: 400px;
+}
+
 /* question container */
 #question-container {
     background: #3ae9fc;
     color: #ffffff;
-    margin-left: 5px;
+    margin-left: 10px;
     width: 100%;
 }
 
@@ -33,6 +43,8 @@ body {
 #translLyrics {
     font-size: 18px;
 }
+
+/* s */
 
 #answer-list {
     padding: 0;

@@ -17,11 +17,17 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand mx-auto" href="#">DOTHRAKIFY</a>
-        </nav>
-    </header>
+    <nav class="navbar navbar-dark bg-dark">
+        <!-- <a class="navbar-brand mx-auto" href="#">DOTHRAKIFY - A TKA Project</a> -->
+    </nav>
+    <!-- jumbotron -->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <!-- <h1 class="display-4">Fluid jumbotron</h1> -->
+            <img id="dothrakify-logo" class="img-fluid" src="images/dothrakify_logo.png" alt="Dothrakify logo">
+            <p class="lead">Pop songs translated into Dothraki</p>
+        </div>
+    </div>  
     <div class="container">
         <div class="row">
             <!-- main container for page -->
@@ -45,7 +51,7 @@
                         <p id="translLyrics"></p>
                     </div>
                     <!-- container for possible answers -->
-                    <div class="col-md-2">
+                    <div id="answer-container" class="col-md-2">
                         <h5>Choose One:</h5>
                         <ul id="answer-list">
                             <li class="guess1 answer" id="changeling1"></li>

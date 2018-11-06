@@ -1,4 +1,4 @@
-let songs = ["let it go", "mmmbop", "hey ya"];
+let songs = ["let it go", "mmmbop", "hey ya", "lika a virgin"];
 let guesses = ["like a virgin", "let it go", "mmmbop", "hey ya"];
 let languages = ["dothraki"];
 let user = "Captain Awesome";
@@ -24,7 +24,7 @@ function songPull(song, language) {
     $.ajax({
         url: queryURL,
         method: "GET"
-        // first callback gets the song id to be passed into secojnd ajax call
+        // first callback gets the song id to be passed into second ajax call
     }).then(function (response) {
         // console.log(queryURL);
         // response returns as a string -- json.parse changes into an object
@@ -42,6 +42,7 @@ function songPull(song, language) {
             var trackIdResponse = JSON.parse(secondResponse);
             // response returns lyrics to pe passed into translation function
             var lyrics = trackIdResponse.message.body.lyrics.lyrics_body;
+            console.log(lyrics);
 
             $.ajax({
                 url: `https://api.funtranslations.com/translate/${language}.json?text=${lyrics}&api_key=JU188G9Hg1LzLKqX6gSA6QeF`,
@@ -50,7 +51,7 @@ function songPull(song, language) {
                 // console.log(lyricResponse)
                 console.log(lyricResponse.contents.translated)
                 translatedLyrics = lyricResponse.contents.translated
-                
+
                 // used substing method to get all of the lyrics up the first * which indicates non commercial use only
                 $("#translLyrics").html(`<p>${translatedLyrics.substring(0, translatedLyrics.indexOf("*"))}</p>`);
             })
@@ -87,8 +88,8 @@ function songPull(song, language) {
 } */
 
 function displayGuesses() {
-    for (var i = 0; i < 4; i++) {
-        $(".guess" + [i + 1]).text(guesses[i]);
+    for (var i = 0; i < songs.length; i++) {
+        $(".guess" + [i]).text(guesses[i]);
     }
 }
 
@@ -169,7 +170,7 @@ $(".guess4").on("click", function (event) {
 
 $(".submit").on("click", function (event) { //nested on.click 's. Not sure if will work. 
     console.log("submit made");
-    if (number === guess - 1) {
+    if (number === guess) {
         wins = wins + 1;
         count = count + 1;
         number = number + 1;
