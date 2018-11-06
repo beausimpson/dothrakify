@@ -2,16 +2,18 @@ let songs = ["let it go", "mmmbop", "hey ya"];
 let guesses = ["like a virgin", "let it go", "mmmbop", "hey ya"];
 let languages = ["dothraki"];
 let user = "Captain Awesome";
-let lyrics;
+//let lyrics;
 let number = 1;
 let wins = 0;
 let losses = 0;
 let guess = 0;
 let count = 0;
-let translation;
+//let translation;
+let song = songs[2];
+var language = languages[0];
 
 // temporary variable to test songpull function -- will need to be removed
-let song = songs[2];
+
 
 function songPull(song, language) {
     //api for songPull here
@@ -50,7 +52,7 @@ function songPull(song, language) {
                 // console.log(lyricResponse)
                 console.log(lyricResponse.contents.translated)
                 translatedLyrics = lyricResponse.contents.translated
-                $("#lyrics").html(`<p>${translatedLyrics.substring(0, translatedLyrics.indexOf("*"))}</p>`);
+                $("#translLyrics").html(`<p>${translatedLyrics.substring(0, translatedLyrics.indexOf("*"))}</p>`);
             })
         })
     })
@@ -58,10 +60,10 @@ function songPull(song, language) {
 }
 
 // temporary variable for language
-var language = "dothraki"
+
 
 // language parameter should only be needed if we want add feature of changing languages
-function songTranslate(lyrics, language) {
+/* function songTranslate(lyrics, language) {
     let translation;
     //api for translating song here
     $.ajax({
@@ -76,13 +78,13 @@ function songTranslate(lyrics, language) {
     })
     return translation;
 
-}
+} */
 
 // ussed substing method to get all of the lyrics up the first * which indicates non commercial use only
-function displayLyrics(translation) {
+/* function displayLyrics(translation) {
     $(".translLyrics").text(translation.substring(0, translation.indexOf("*")))
 
-}
+} */
 
 function displayGuesses() {
     for (var i = 0; i < 4; i++) {
@@ -98,12 +100,12 @@ function displayWinLoss(number) {
 }
 
 window.onload = function () {
-    lyrics = songPull(songs[0]);
-    console.log(lyrics);
-    translation = songTranslate(lyrics, languages[0]);
-    console.log(translation);
+    songPull(songs[0], language);
+    //console.log(lyrics);
+    //translation = songTranslate(lyrics, languages[0]);
+    //console.log(translation);
     displayGuesses();
-    displayLyrics(translation);
+    //displayLyrics(translation);
     displayWinLoss(number);
 
 }
@@ -176,10 +178,10 @@ $(".submit").on("click", function (event) { //nested on.click 's. Not sure if wi
         count = count + 1;
         number = number + 1;
     }
-    lyrics = songPull(songs[count]);
-    translation = songTranslate(lyrics, languages[0]);
+    songPull(songs[count], language);
+    //translation = songTranslate(lyrics, languages[0]);
     displayGuesses();
-    displayLyrics(translation);
+    //displayLyrics(translation);
     displayWinLoss(number);
 
 })
