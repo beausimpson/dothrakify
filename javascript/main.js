@@ -1,4 +1,4 @@
-let songs = ["let it go", "mmmbop", "hey ya"];
+let songs = ["let it go", "mmmbop", "hey ya", "lika a virgin"];
 let guesses = ["like a virgin", "let it go", "mmmbop", "hey ya"];
 let languages = ["dothraki"];
 let user = "Captain Awesome";
@@ -12,21 +12,19 @@ let count = 0;
 let song = songs[2];
 var language = languages[0];
 
-// temporary variable to test songpull function -- will need to be removed
-
-
 function songPull(song, language) {
     //api for songPull here
     // variable to hold url to bypass CORS restrictions
     var corsBypass = "https://cors-escape.herokuapp.com/"
     // URL for to get music lyrics from selected song
     var queryURL = `${corsBypass}https://api.musixmatch.com/ws/1.1/track.search?q_track=${song}&apikey=19235e8ed115f81044447a46c258f431`;
+    console.log(song);
 
     // ajax call to get song lyrics
     $.ajax({
         url: queryURL,
         method: "GET"
-        // first callback gets the song id to be passed into secojnd ajax call
+        // first callback gets the song id to be passed into second ajax call
     }).then(function (response) {
         // console.log(queryURL);
         // response returns as a string -- json.parse changes into an object
@@ -44,6 +42,7 @@ function songPull(song, language) {
             var trackIdResponse = JSON.parse(secondResponse);
             // response returns lyrics to pe passed into translation function
             var lyrics = trackIdResponse.message.body.lyrics.lyrics_body;
+            console.log(lyrics);
 
             $.ajax({
                 url: `https://api.funtranslations.com/translate/${language}.json?text=${lyrics}&api_key=JU188G9Hg1LzLKqX6gSA6QeF`,
@@ -52,6 +51,8 @@ function songPull(song, language) {
                 // console.log(lyricResponse)
                 console.log(lyricResponse.contents.translated)
                 translatedLyrics = lyricResponse.contents.translated
+
+                // used substing method to get all of the lyrics up the first * which indicates non commercial use only
                 $("#translLyrics").html(`<p>${translatedLyrics.substring(0, translatedLyrics.indexOf("*"))}</p>`);
             })
         })
@@ -87,13 +88,13 @@ function songPull(song, language) {
 } */
 
 function displayGuesses() {
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < songs.length; i++) {
         $(".guess" + [i]).text(guesses[i]);
     }
 }
 
 function displayWinLoss(number) {
-    $(".questionNum").text(number);
+    $(".questionNum").text(`Question ${number}`);
     $(".user").text(user);
     $(".corrAnswers").text("WINS: " + wins);
     $(".wrongAnswers").text("LOSSES: " + losses);

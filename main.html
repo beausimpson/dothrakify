@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Dothraki Lyrics</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dothrakify - A TKA Project</title>
 
     <!-- link to Bootstrap CSS Framework -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -17,50 +17,88 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
-        </nav>
-    </header>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand mx-auto" href="#">A TKA Project</a>
+    </nav>
+    <!-- jumbotron -->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <!-- <h1 class="display-4">Fluid jumbotron</h1> -->
+            <img id="dothrakify-logo" class="img-fluid" src="images/dothrakify_logo.png" alt="Dothrakify logo">
+            <p class="lead">Pop songs translated into Dothraki</p>
+        </div>
+    </div>  
     <div class="container">
         <div class="row">
-            <!-- small popup container on left that says "question #1" -->
-            <div id="question-container" class="col-md-3">
-                <h1 class="questionNum">Question #1</h1>
-                <h4 class="user">User: </h4>
-                <h4 class="corrAnswers">Correct: </h4>
-                <h4 class="wrongAnswers">Wrong: </h4>
+            <!-- main container for page -->
+            <div id="main-container" class="col-md-12">
+                <div class="row">
+                    <!-- <div id="question-header" class="col-md-12"></div> -->
+                    <div class="col-md-3">
+                        <!-- small popup container on left that says "question #1" -->
+                        <div id="question-container" class="card">
+                            <div class="card-body">
+                                <h5 class="card-title questionNum"></h5>
+                                <h6 class="card-subtitle mb-2 text-muted user"></h6>
+                                <h6 class="card-subtitle mb-2 text-muted corrAnswers"></h6>
+                                <h6 class="card-subtitle mb-2 text-muted wrongAnswers"></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="lyrics-container" class="col-md-7">
+                        <!-- container for translated lyrics -->
+                        <h3>Guess the Song:</h3>
+                        <p id="translLyrics"></p>
+                    </div>
+                    <!-- container for possible answers -->
+                    <div id="answer-container" class="col-md-2">
+                        <h5>Choose One:</h5>
+                        <ul id="answer-list">
+                            <li class="guess1 answer" id="changeling1"></li>
+                            <li class="guess2 answer" id="changeling2"></li>
+                            <li class="guess3 answer" id="changeling3"></li>
+                            <li class="guess4 answer" id="changeling4"></li>
+                        </ul>
+                        <button class="submit btn btn-danger">Submit</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <!-- main container for page -->
-    <div id="main-container" class="container">
+    <!-- <div id="main-container" class="container">
         <div class="row">
             <div id="question-header" class="col-md-12"></div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 offset-md-3">
-                <!-- container for translated lyrics -->
-                <p id="translLyrics">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero quae
-                    recusandae
-                    harum provident non tempora porro modi unde iusto necessitatibus similique neque, illum saepe
-                    ratione quis, alias optio laudantium quidem!"</p>
+        </div> -->
+    <!-- <div class="row">
+            <div class="col-md-4 offset-md-3"> -->
+    <!-- container for translated lyrics -->
+    <!-- <p id="translLyrics"></p>
             </div>
-            <div class="col-md-4 offset-md-1">
-                <!-- container for possible answers -->    
-                <ul>
-                    <li class="guess1" id="changeling1">guess1</li>
-                    <li class="guess2" id="changeling2">guess2</li>
-                    <li class="guess3" id="changeling3">guess3</li>
-                    <li class="guess4" id="changeling4">guess4</li>
+            <div class="col-md-4 offset-md-1"> -->
+    <!-- container for possible answers -->
+    <!-- <ul>
+                    <li class="guess1" id="changeling1"></li>
+                    <li class="guess2" id="changeling2"></li>
+                    <li class="guess3" id="changeling3"></li>
+                    <li class="guess4" id="changeling4"></li>
                 </ul>
                 <button class="submit btn btn-danger">Submit</button>
             </div>
-        </div>
-    </div>
+        </div> -->
+    <!-- </div> -->
+
+    <!-- link to Bootstrap JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 
     <!-- link to jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <!-- link to site sepecific javascript file -->
     <script src="javascript/main.js"></script>
 </body>
