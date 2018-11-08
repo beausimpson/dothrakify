@@ -53,7 +53,7 @@
     <div class="container">
         <div class="row">
             <!-- main container for page -->
-            <div id="main-container" class="col-md-12">
+            <div id="main-container" class="col-md-9">
                 <div class="row">
                     <!-- <div id="question-header" class="col-md-12"></div> -->
                     <div class="col-md-3">
@@ -67,13 +67,13 @@
                             </div>
                         </div>
                     </div>
-                    <div id="lyrics-container" class="col-md-7">
+                    <div id="lyrics-container" class="col-md-6">
                         <!-- container for translated lyrics -->
                         <h3><i class="far fa-question-circle"></i> Guess the Song:</h3>
                         <p id="translLyrics"></p>
                     </div>
                     <!-- container for possible answers -->
-                    <div id="answer-container" class="col-md-2">
+                    <div id="answer-container" class="col-md-3">
                         <h5>Choose One:</h5>
                         <ul id="answer-list">
                             <li class="guess1 answer" id="changeling1"></li>
@@ -81,34 +81,19 @@
                             <li class="guess3 answer" id="changeling3"></li>
                             <li class="guess4 answer" id="changeling4"></li>
                         </ul>
-                        <button class="submit btn btn-danger"><i class="fas fa-arrow-circle-right"></i> Submit</button>
+                        <button id="game-submit" class="submit btn btn-danger"><i class="fas fa-arrow-circle-right"></i> Submit</button>
                     </div>
                 </div>
             </div>
+            <div id="translation-container" class="col-md-3">
+                <h5>Translate into Dothraki !!!</h5>
+                <input id="user-artist" type="text" placeholder="Artist">
+                <input id="user-song" type="text" placeholder="Song Title">
+                <button id="translate-button" class="submit btn btn-primary"><i class="fas fa-arrow-circle-right"></i> Translate!</button>
+                <div id="user-translated-lyrics"></div>
+            </div>
         </div>
     </div>
-    <!-- main container for page -->
-    <!-- <div id="main-container" class="container">
-        <div class="row">
-            <div id="question-header" class="col-md-12"></div>
-        </div> -->
-    <!-- <div class="row">
-            <div class="col-md-4 offset-md-3"> -->
-    <!-- container for translated lyrics -->
-    <!-- <p id="translLyrics"></p>
-            </div>
-            <div class="col-md-4 offset-md-1"> -->
-    <!-- container for possible answers -->
-    <!-- <ul>
-                    <li class="guess1" id="changeling1"></li>
-                    <li class="guess2" id="changeling2"></li>
-                    <li class="guess3" id="changeling3"></li>
-                    <li class="guess4" id="changeling4"></li>
-                </ul>
-                <button class="submit btn btn-danger">Submit</button>
-            </div>
-        </div> -->
-    <!-- </div> -->
 
     <!-- link to Bootstrap JavaScript -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
