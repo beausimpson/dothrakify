@@ -8,6 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dothrakify - A TKA Project</title>
 
+    <!-- link to Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
     <!-- link to Bootstrap CSS Framework -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
@@ -17,17 +20,36 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand mx-auto" href="#">A TKA Project</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand mx-auto" href="https://beausimpson.github.io/team-kickass/">Dothrakify</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="https://github.com/beausimpson/team-kickass" target="_blank"
+                        id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        a TKA project
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="https://github.com/And-Rasta" target="_blank"><i class="fab fa-github"></i> Andrasta Seatts</a>
+                        <a class="dropdown-item" href="https://github.com/Violetce" target="_blank"><i class="fab fa-github"></i> Morgan Kennendy</a>
+                        <a class="dropdown-item" href="https://github.com/beausimpson" target="_blank"><i class="fab fa-github"></i> Beau Simpson</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </nav>
     <!-- jumbotron -->
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <!-- <h1 class="display-4">Fluid jumbotron</h1> -->
-            <img id="dothrakify-logo" class="img-fluid" src="images/dothrakify_logo.png" alt="Dothrakify logo">
+            <img id="dothrakify-logo" class="img-fluid" src="images/dothrakify-logo-horses.png" alt="Dothrakify logo with Horses">
             <p class="lead">Pop songs translated into Dothraki</p>
         </div>
-    </div>  
+    </div>
     <div class="container">
         <div class="row">
             <!-- main container for page -->
@@ -47,7 +69,7 @@
                     </div>
                     <div id="lyrics-container" class="col-md-7">
                         <!-- container for translated lyrics -->
-                        <h3>Guess the Song:</h3>
+                        <h3><i class="far fa-question-circle"></i> Guess the Song:</h3>
                         <p id="translLyrics"></p>
                     </div>
                     <!-- container for possible answers -->
@@ -59,7 +81,7 @@
                             <li class="guess3 answer" id="changeling3"></li>
                             <li class="guess4 answer" id="changeling4"></li>
                         </ul>
-                        <button class="submit btn btn-danger">Submit</button>
+                        <button class="submit btn btn-danger"><i class="fas fa-arrow-circle-right"></i> Submit</button>
                     </div>
                 </div>
             </div>

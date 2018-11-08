@@ -1,12 +1,21 @@
 
 /* body of page */
 body {
-    background: url("../images/swirl_pattern.png") #666666 center;
+    /* background: url("../images/swirl_pattern.png") #666666 center; */
+    background: url("../images/funky-lines.png") #666666 center;
 }
 
 /* navbar */
 .navbar {
     background: #666666;
+}
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-toggle:after { 
+    content: none 
 }
 
 /* main page container */
@@ -21,19 +30,19 @@ body {
 /* jumbotron */
 .jumbotron {
     text-align: center;
+    /* background: url("../images/funky-lines.png") #666666 center; */
 }
 
 /* logo */
 #dothrakify-logo {
-    width: 400px;
+    width: 500px;
 }
 
 /* question container */
 #question-container {
     background: #3ae9fc;
     color: #ffffff;
-    margin-left: 10px;
-    width: 100%;
+    margin: 10px;
 }
 
 #lyrics-container {
@@ -44,8 +53,7 @@ body {
     font-size: 18px;
 }
 
-/* s */
-
+/* answers */
 #answer-list {
     padding: 0;
     list-style-type: none;
