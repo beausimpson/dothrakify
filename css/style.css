@@ -20,9 +20,11 @@ body {
 
 /* main page container */
 #main-container {
-    margin-top:50px;
+    margin-top: 30px;
+    margin-bottom:50px;
     padding: 20px 10px;
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     border: 2px solid #666666;
     background: #ffffff;
 }
@@ -62,4 +64,24 @@ body {
 
 .answer:hover {
     background: #3ae9fc;
+}
+
+/* user selected translated songs container */
+#translation-container {
+    margin-top:30px;
+    margin-bottom:50px;
+    padding: 20px 20px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: #ededed;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#user-translated-lyrics {
+    margin-top: 20px;
+    text-transform: capitalize;
 }

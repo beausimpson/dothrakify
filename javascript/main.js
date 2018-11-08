@@ -60,33 +60,6 @@ function songPull(song, language) {
 
 }
 
-// temporary variable for language
-
-
-// language parameter should only be needed if we want add feature of changing languages
-/* function songTranslate(lyrics, language) {
-    let translation;
-    //api for translating song here
-    $.ajax({
-        url: `https://api.funtranslations.com/translate/${language}.json?text=${lyrics}&api_key=JU188G9Hg1LzLKqX6gSA6QeF`,
-        method: "Get"
-    }).then(function (lyricResponse) {
-        // console.log(lyricResponse)
-        // response returns translated lyrics
-        //console.log(lyricResponse.contents.translated)
-        // varaible to hold translated lyrics string
-        translation = lyricResponse.contents.translated
-    })
-    return translation;
-
-} */
-
-// ussed substing method to get all of the lyrics up the first * which indicates non commercial use only
-/* function displayLyrics(translation) {
-    $(".translLyrics").text(translation.substring(0, translation.indexOf("*")))
-
-} */
-
 function displayGuesses() {
     for (var i = 0; i < songs.length; i++) {
         $(".guess" + [i]).text(guesses[i]);
@@ -168,7 +141,10 @@ $(".guess4").on("click", function (event) {
     //changeColor(); // change color of guess as a "highlight"
 })
 
-$(".submit").on("click", function (event) { //nested on.click 's. Not sure if will work. 
+$("#game-submit").on("click", function (event) { //nested on.click 's. Not sure if will work. 
+    // prevents user from hitting return to trigger event
+    event.preventDefault();
+
     console.log("submit made");
     if (number === guess) {
         wins = wins + 1;
@@ -184,5 +160,67 @@ $(".submit").on("click", function (event) { //nested on.click 's. Not sure if wi
     displayGuesses();
     //displayLyrics(translation);
     displayWinLoss(number);
+
+})
+
+// on click function to translate user input for artist and song
+$("#translate-button").on("click", function (event) {
+    // prevents user from hitting return to trigger event
+    event.preventDefault();
+
+    // variables to hold user input to be passed into ajax call
+    var userArtist = $("#user-artist").val().trim();
+    var userSong = $("#user-song").val().trim();
+
+    // variable to hold url to bypass CORS restrictions
+    var corsBypass = "https://cors-escape.herokuapp.com/"
+    // URL to get music lyrics from user inputs for artist and song
+    var queryURL = `${corsBypass}https://api.musixmatch.com/ws/1.1/track.search?q_artist=${userArtist}&q_track=${userSong}&apikey=19235e8ed115f81044447a46c258f431`;
+
+    // ajax call to get song lyrics
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+        // first callback gets the song id to be passed into second ajax call
+    }).then(function (response) {
+        // console.log(queryURL);
+        // response returns as a string -- json.parse changes into an object
+        var JSONresponse = JSON.parse(response);
+        //console.log(JSONresponse.message.body.track_list[0].track.track_id);
+        // trackid number that will be passed into second ajax call
+        var trackId = JSONresponse.message.body.track_list[0].track.track_id;
+
+        // second ajax callback takes track id to get lyrics for chosen song
+        $.ajax({
+            url: `${corsBypass}https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${trackId}&apikey=19235e8ed115f81044447a46c258f431`,
+            method: "GET"
+        }).then(function (secondResponse) {
+            // response returns as a string -- json.parse changes into an object
+            var trackIdResponse = JSON.parse(secondResponse);
+            // response returns lyrics to pe passed into translation function
+            var lyrics = trackIdResponse.message.body.lyrics.lyrics_body;
+            console.log(lyrics);
+
+            $.ajax({
+                url: `https://api.funtranslations.com/translate/${language}.json?text=${lyrics}&api_key=JU188G9Hg1LzLKqX6gSA6QeF`,
+                method: "Get"
+            }).then(function (lyricResponse) {
+                // console.log(lyricResponse.contents.translated)
+                translatedLyrics = lyricResponse.contents.translated
+
+                // used substing method to get all of the lyrics up the first * which indicates non commercial use only
+                $("#user-translated-lyrics").html(`
+                    <h5>${userArtist}'s ${userSong}</h5>
+                    <h6>in Dothraki:</h6>
+                    <p>${translatedLyrics.substring(0, translatedLyrics.indexOf("*"))}</p>`
+                );
+
+                // Clears all of the text-boxes
+                $("#user-artist").val("");
+                $("#user-song").val("");
+            })
+        })
+    })
+
 
 })
